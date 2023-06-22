@@ -33,9 +33,9 @@ const (
 	// MainnetChainID defines the Evmos EIP155 chain ID for mainnet
 	MainnetChainID = "highbury_710"
 	// TestnetChainID defines the Evmos EIP155 chain ID for testnet
-	TestnetChainID = "highbury_710"
+	TestnetChainID = "highbury_7101"
 	// BaseDenom defines the Evmos mainnet denomination
-	BaseDenom = "aevmos"
+	BaseDenom = "ablack"
 )
 
 // IsMainnet returns true if the chain-id has the Evmos mainnet EIP155 chain prefix.

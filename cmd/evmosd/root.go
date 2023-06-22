@@ -65,7 +65,7 @@ import (
 )
 
 const (
-	EnvPrefix = "BLACK"
+	EnvPrefix = "EVMOS"
 )
 
 // NewRootCmd creates a new root command for evmosd. It is called once in the
