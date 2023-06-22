@@ -142,7 +142,7 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	jq -r --arg total_supply "$total_supply" '.app_state["bank"]["supply"][0]["amount"]=$total_supply' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
 
 	# Sign genesis transaction
-	evmosd gentx "${KEYS[0]}" 1000000000000000000000ablack --keyring-backend $KEYRING --chain-id $CHAINID --home "$HOMEDIR"
+	evmosd gentx "${KEYS[0]}" 1000000000000000000000ablack --keyring-backend $KEYRING --chain-id $CHAINID --home "$HOMEDIR" --ip 34.93.171.55
 	## In case you want to create multiple validators at genesis
 	## 1. Back to `evmosd keys add` step, init more keys
 	## 2. Back to `evmosd add-genesis-account` step, add balance for those
@@ -151,10 +151,10 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	## 5. Copy the `gentx-*` folders under `~/.clonedEvmosd/config/gentx/` folders into the original `~/.evmosd/config/gentx`
 
 	# Collect genesis tx
-	evmosd collect-gentxs --home "$HOMEDIR"
+#	evmosd collect-gentxs --home "$HOMEDIR"
 
 	# Run this to ensure everything worked and that the genesis file is setup correctly
-	evmosd validate-genesis --home "$HOMEDIR"
+#	evmosd validate-genesis --home "$HOMEDIR"
 
 	if [[ $1 == "pending" ]]; then
 		echo "pending mode is on, please wait for the first block committed."
@@ -162,4 +162,4 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 fi
 
 # Start the node (remove the --pruning=nothing flag if historical queries are not needed)
-evmosd start --metrics "$TRACE" --log_level $LOGLEVEL --minimum-gas-prices=0.0001ablack --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable --home "$HOMEDIR"
+# evmosd start --metrics "$TRACE" --log_level $LOGLEVEL --minimum-gas-prices=0.0001ablack --json-rpc.api eth,txpool,personal,net,debug,web3 --api.enable --home "$HOMEDIR"
